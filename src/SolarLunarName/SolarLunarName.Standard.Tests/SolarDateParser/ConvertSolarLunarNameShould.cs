@@ -24,7 +24,7 @@ namespace SolarLunarName.Standard.Tests.SolarDateParserShould
 
             var result = remoteName == UtcDateTime;
 
-            Assert.True(result, "Should return expected data.");
+            Assert.True(result, $"remoteName {remoteName} == {UtcDateTime}");
 
         }
 
@@ -50,7 +50,7 @@ namespace SolarLunarName.Standard.Tests.SolarDateParserShould
 
             var result = remoteName == UtcDateTime;
 
-            Assert.True(result, "Should return expected data.");
+            Assert.True(result, $"remoteName {remoteName} == {UtcDateTime}");
 
         }
 

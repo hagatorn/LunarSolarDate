@@ -12,7 +12,9 @@ namespace SolarLunarName.Standard.Types
         public int LunarDay { get; }
 
         internal SolarLunarName(DateTime solarDateTime, int year, int lunarMonth, int lunarDay)
-        {
+        {   
+            // TODO this constructor does not guarantee a valid month 
+            // Would Factory Pattern help?
             SolarDateTime = solarDateTime;
             Year = year;
             LunarMonth = lunarMonth;

@@ -5,7 +5,7 @@ using SolarLunarName.SharedTypes.Models;
 using SolarLunarName.SharedTypes.Interfaces;
 using System.IO;
 using SolarLunarName.SharedTypes.Primitives;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace SolarLunarName.Standard.RestServices.Json
 {
@@ -16,12 +16,9 @@ namespace SolarLunarName.Standard.RestServices.Json
         protected abstract T StreamDeligate<T>(ValidYear year, Func<Stream, T> method);
 
         protected T Deserialize<T>(Stream s){
-                using (StreamReader sr = new StreamReader(s))
-                using (JsonReader reader = new JsonTextReader(sr))
-                {   
-                    JsonSerializer serializer = new JsonSerializer();
-                    return serializer.Deserialize<T>(reader);
-                }
+   
+                return JsonSerializer.DeserializeAsync<T>(s).Result;
+                
         }
 
         protected IList<I> DeserializeList<T, I>(Stream s) where T : I{

@@ -4,49 +4,37 @@ namespace SolarLunarName.SharedTypes.Models
 {
     public class SolarLunarNameSimple
     {
-        public SolarLunarNameSimple(int year, int lunarMonth, int lunarDay)
-        {
-        Year = year;
-        LunarMonth = lunarMonth;
-        LunarDay = lunarDay;
+        public SolarLunarNameSimple(int Year, int LunarMonth, int LunarDay)
+        {   
+            Helpers.ValidateYear(Year);
+            _year = Year;
+
+            Helpers.ValidateLunarMonth(LunarMonth);
+            _lunarMonth = LunarMonth;
+
+            Helpers.ValidateLunarDay(LunarDay);
+            _lunarDay = LunarDay;
+        
         }
         
-        private int _year;
+        private readonly int _year;
         
         public int Year { 
             get {
                 return _year ;
                 }
-            set {
-
-                Helpers.ValidateYear(value);
-                _year = value;
-
-            } 
         }
-        private int _lunarMonth;
+        private readonly int _lunarMonth;
         public int LunarMonth {    
             get {
                 return _lunarMonth ;
                 }
-            set {
-
-                Helpers.ValidateLunarMonth(value);;
-                _lunarMonth = value;
-
-            } 
         }
-        private int _lunarDay;
+        private readonly int _lunarDay;
         public int LunarDay {    
             get {
                 return _lunarDay ;
                 }
-            set {
-                
-                Helpers.ValidateLunarDay(value);
-                _lunarDay = value;
-                
-            } 
         }
         
 

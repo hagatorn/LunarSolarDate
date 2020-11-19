@@ -23,7 +23,7 @@ namespace SolarLunarName.Standard.Tests
 
             var result =  month.FirstDay == monthLiteral.FirstDay && month.Days == monthLiteral.Days;
 
-            Assert.True(result, "Returns correct year month.");
+            Assert.True(result, $"FirstDay {month.FirstDay} == {monthLiteral.FirstDay}");
         }
     }
     

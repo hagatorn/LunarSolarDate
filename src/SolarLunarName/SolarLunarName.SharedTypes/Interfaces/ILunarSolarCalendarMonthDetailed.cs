@@ -5,7 +5,7 @@ namespace SolarLunarName.SharedTypes.Interfaces
 {
     public interface ILunarSolarCalendarMonthDetailed : ILunarSolarCalendarMonth
     {
-        int Month { get; set; }
-        IList<MoonPhaseEntity> Phases { get; set; }
+        int Month { get;}
+        IList<MoonPhaseEntity> Phases { get;}
     }
 }

@@ -4,8 +4,8 @@ namespace SolarLunarName.SharedTypes.Interfaces
 {
     public interface ILunarSolarCalendarMonth
     {
-        int Days { get; set; }
+        int Days { get; }
 
-        DateTime FirstDay { get; set;}
+        DateTime FirstDay { get; }
     }
 }

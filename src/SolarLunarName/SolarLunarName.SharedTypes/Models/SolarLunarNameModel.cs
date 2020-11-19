@@ -5,25 +5,20 @@ namespace SolarLunarName.SharedTypes.Models
     public class SolarLunarNameModel: SolarLunarNameSimple
     {   
         
-        public SolarLunarNameModel(DateTime solarDateTime, int year, int lunarMonth, int lunarDay)
-            :base(year, lunarMonth, lunarDay)
+        public SolarLunarNameModel(DateTime SolarDateTime, int Year, int LunarMonth, int LunarDay)
+            :base(Year, LunarMonth, LunarDay)
         {
-        SolarDateTime = solarDateTime;
+            Validation.Helpers.ValidateYear(SolarDateTime.Year);
+            _solarDateTime = SolarDateTime;
         }
 
-        private DateTime _solarDateTime;
+        private readonly DateTime _solarDateTime;
         
         public DateTime SolarDateTime {
 
             get {
                 return _solarDateTime ;
                 }
-            set {
-
-                Validation.Helpers.ValidateYear(value.Year);
-                _solarDateTime = value;
-                
-            } 
         }
     }
 

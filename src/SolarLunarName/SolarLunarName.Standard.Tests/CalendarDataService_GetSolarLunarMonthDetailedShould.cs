@@ -29,9 +29,9 @@ namespace SolarLunarName.Standard.Tests
             
             var monthLiteral = new LunarSolarCalendarMonthDetailed(19, 0, DateTime.Parse("1700-01-01T00:00:00"), phasesLiteral);
 
-            Assert.True(month.FirstDay == monthLiteral.FirstDay, "Returns correct First Day.");
-            Assert.True(month.Days == monthLiteral.Days, "Returns correct number of days.");
-            Assert.True(month.Month == monthLiteral.Month, "Returns correct month.");
+            Assert.True(month.FirstDay == monthLiteral.FirstDay, $"Returns correct First Day. {month.FirstDay} not {monthLiteral.FirstDay}");
+            Assert.True(month.Days == monthLiteral.Days, $"Returns correct number of days. {month.Days} not {monthLiteral.Days}");
+            Assert.True(month.Month == monthLiteral.Month, $"Returns correct month. {month.Month} not {monthLiteral.Month}");
             Assert.True(
                     month.Phases
                         .Take(2)
@@ -43,7 +43,7 @@ namespace SolarLunarName.Standard.Tests
                             x.First.Phase == x.Second.Phase &&
                             x.First.Days == x.Second.Days                             
                             ), 
-                            "Returns correct Phases."
+                            $"Returns correct {phasesLiteral[0].Date} == {month.Phases[0].Date}, {phasesLiteral[0].FirstDay} == {month.Phases[0].FirstDay}, {phasesLiteral[0].LastDay} == {month.Phases[0].LastDay}, {phasesLiteral[0].Phase} == {month.Phases[0].Phase}, {phasesLiteral[0].Days} == {month.Phases[0].Days}"
                         
             );
             

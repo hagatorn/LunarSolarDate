@@ -26,27 +26,16 @@ namespace SolarLunarName.Standard.RestServices.Json
         public ILunarSolarCalendarMonth GetMonthData(ValidYear year, ValidLunarMonth month)
         {
 
-            try
-            {   
-                return StreamDeligate<LunarSolarCalendarMonth>(
-                    year,
-                    month,
-                    Deserialize<LunarSolarCalendarMonth>
-                );
-            }
-            catch (Exception e) when (ExpectedExceptionPredicate(e))
-            {
-
-                var monthsInYear = GetYear(year).Count();
-                throw new SolarLunarName.SharedTypes.Exceptions.MonthDoesNotExistException(year, month, monthsInYear);
-            }
+            return GetMonthData<LunarSolarCalendarMonth, ILunarSolarCalendarMonth>(year, month);
 
         }
 
         public IList<DateTime> GetYear(ValidYear year){
+
                 return GetYearData(year)
                     .Select(x=> x.FirstDay)
                     .ToList();
+
         }
 
 
@@ -61,22 +50,8 @@ namespace SolarLunarName.Standard.RestServices.Json
 
         public ILunarSolarCalendarMonthDetailed GetMonthDataDetailed(ValidYear year, ValidLunarMonth month)
         {   
-            try
-            {   
-                return StreamDeligate<ILunarSolarCalendarMonthDetailed>(
-                        year,
-                        month,
-                        Deserialize<LunarSolarCalendarMonthDetailed>
-                );
-            }
-            catch (Exception e) when (ExpectedExceptionPredicate(e))
-            {
 
-                var monthsInYear = GetYear(year).Count();
-                throw new SolarLunarName.SharedTypes.Exceptions.MonthDoesNotExistException(year, month, monthsInYear);
-            }
-
-
+            return GetMonthData<LunarSolarCalendarMonthDetailed, ILunarSolarCalendarMonthDetailed>(year, month);
 
         }
         
@@ -107,6 +82,26 @@ namespace SolarLunarName.Standard.RestServices.Json
         [Obsolete("This Overload is being deprecated in version 1.0.0 cast string to ValidYear")]
         public IList<ILunarSolarCalendarMonthDetailed> GetYearDataDetailed(string year) =>
             GetYearDataDetailed((ValidYear)year);
+
+        
+        private I GetMonthData<T, I>(ValidYear year, ValidLunarMonth month) where T : I 
+        {
+            try
+            {   
+                return StreamDeligate<T>(
+                                year,
+                                month,
+                                Deserialize<T>
+                            );
+            }
+            catch (Exception e) when (ExpectedExceptionPredicate(e))
+            {
+
+                var monthsInYear = GetYear(year).Count();
+                throw new SolarLunarName.SharedTypes.Exceptions.MonthDoesNotExistException(year, month, monthsInYear);
+            }
+
+        }
 
     }
 

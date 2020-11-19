@@ -5,12 +5,17 @@ namespace SolarLunarName.SharedTypes.Models
 {
     public class LunarSolarCalendarMonth : ILunarSolarCalendarMonth
     {
-        public LunarSolarCalendarMonth(int days, DateTime date){
-            Days = days;
-            FirstDay = date;
+        public LunarSolarCalendarMonth(int Days, DateTime FirstDay){
+            _days = Days;
+            _firstDay = FirstDay;
         }
         
-        public int Days { get; set; }
-        public DateTime FirstDay { get; set;}
+        public int Days => _days;
+        public DateTime FirstDay => _firstDay;
+
+        private readonly int _days;
+        private readonly DateTime _firstDay;
+
     }
+
 }
